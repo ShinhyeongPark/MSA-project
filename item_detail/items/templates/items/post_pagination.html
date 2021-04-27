@@ -1,0 +1,24 @@
+<nav>
+
+        <ul class="pagination">
+            <li class="page-item">
+                {% if page.has_previous %}
+                    <!-- post_list에서 with으로 준 page -->
+                    <a class="page-link" href="?page={{ page.previous_page_number }}">
+                        Previous
+                    </a>
+                {% endif %}
+            </li>
+            <li class="page-item">
+                <a
+                    class="page-link"
+                    href=" ">Page {{page.number}} of {{page.paginator.num_pages}}</a>
+        </li>
+        <li class="page-item">
+                    {% if page.has_next %}
+                        <a class="page-link" href="?page={{page.next_page_number}}">Next</a>
+                    {% endif %}
+                </li>
+            </ul>
+
+    </nav>

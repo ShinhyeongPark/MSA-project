@@ -1,0 +1,96 @@
+version: '2'
+services:
+  myitem:
+    image: mysql:5.7
+    container_name: myitem
+    ports:
+      - "3307:3306" # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)  <- 컨테이너 내부는 무조건 3306
+    environment: # -e 옵션
+      - MYSQL_DATABASE=myitem
+      - MYSQL_ROOT_PASSWORD=mysql  # MYSQL 패스워드 설정 옵션
+      - TZ=Asia/Seoul
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    # volumes:
+    #   - /Users/etlaou/Downloads/Data/myitem:/var/lib/mysql
+    networks:
+      - msa-network
+
+  searchitem:
+    image: mysql:5.7
+    container_name: searchitem
+    ports:
+      - "3308:3306" # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)  <- 컨테이너 내부는 무조건 3306
+    environment: # -e 옵션
+      - MYSQL_DATABASE=searchitem
+      - MYSQL_ROOT_PASSWORD=mysql  # MYSQL 패스워드 설정 옵션
+      - TZ=Asia/Seoul
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    # volumes:
+    #   - /Users/etlaou/Downloads/Data/searchitem:/var/lib/mysql
+    networks:
+      - msa-network
+
+  zookeeper:
+    container_name: zookeeper
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      msa-network:
+        ipv4_address: 172.19.0.141
+  kafka:
+    container_name: kafka
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 172.19.0.142
+      KAFKA_CREATE_TOPICS: "test:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - zookeeper
+    networks:
+      msa-network:
+        ipv4_address: 172.19.0.142
+
+
+  kafka-connector-mysql:
+    image: confluentinc/cp-kafka-connect:latest
+    ports:
+      - "8083:8083"
+    links:
+      - kafka
+      - zookeeper
+    environment:
+      CONNECT_BOOTSTRAP_SERVERS: kafka:9092
+      CONNECT_REST_PORT: 8083
+      CONNECT_GROUP_ID: "quickstart-avro"
+      CONNECT_CONFIG_STORAGE_TOPIC: "quickstart-avro-config"
+      CONNECT_OFFSET_STORAGE_TOPIC: "quickstart-avro-offsets"
+      CONNECT_STATUS_STORAGE_TOPIC: "quickstart-avro-status"
+      CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_INTERNAL_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "172.19.0.143"
+      CONNECT_LOG4J_ROOT_LOGLEVEL: DEBUG
+      CONNECT_PLUGIN_PATH: "/usr/share/java,/etc/kafka-connect/jars"
+    volumes:
+      - $PWD/jars:/etc/kafka-connect/jars
+    networks:
+      msa-network:
+        ipv4_address: 172.19.0.143
+
+
+networks:
+  msa-network:
+    external: true

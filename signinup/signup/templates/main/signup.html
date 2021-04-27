@@ -1,0 +1,26 @@
+{% block signup %}
+<h1>Login!</h1>
+
+<form method="POST" action="{% url 'success' %}">
+    {% csrf_token %}
+    <p>Email</p>
+    <input type="text" name="email">
+    <br>
+    <p>Password</p>
+    <input type="text" name="password">
+    <br>
+    <p>Nickname</p>
+    <input type="text" name="nickname">
+    <br>
+    <p>Location</p>
+    <input type="text" name="location">
+    <br>
+    <p>Gender</p>
+    <input type="text" name="gender">
+    <br>
+    <p>Birthdate</p>
+    <input type="text" name="birthdate">
+    <br>
+    <input type="submit" value="회원가입">
+</form>
+{% endblock %}

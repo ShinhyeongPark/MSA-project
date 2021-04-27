@@ -1,0 +1,7 @@
+{
+    "service": {
+        "name": "userDetail", 
+        "tags": ["userDetail"], 
+        "port": 8004
+    }
+}

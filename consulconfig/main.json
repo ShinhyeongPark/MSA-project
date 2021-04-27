@@ -1,0 +1,7 @@
+{
+    "service": {
+        "name": "main", 
+        "tags": ["main"], 
+        "port": 8001
+    }
+}

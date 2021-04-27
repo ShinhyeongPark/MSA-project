@@ -1,0 +1,26 @@
+{% extends "potatomarket/base.html" %}
+{% block content %}
+
+  <!-- Page Content -->
+  <div class="container">
+      {% if token %}
+<form id="ItemForm"
+    class="jumbotron collapse show multi-collapse"
+    method="POST"
+    enctype="multipart/form-data"
+    action="{% url 'item_new' %}">{% csrf_token %}
+
+    <h3>판매 매물 추가하기</h3><hr>
+    <table>
+      {{ form.as_table }}
+    </table>
+    <div><button>추가하기</button></div>
+</form>
+          {% else %}
+           <div style="text-align: center;padding: 100px">로그인이 필요합니다</div>
+              {% endif %}
+
+  </div>
+  <!-- /.container -->
+
+{% endblock %}

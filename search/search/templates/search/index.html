@@ -1,0 +1,62 @@
+{% extends "search/base.html" %}
+{% block content %}
+    {% load static %}
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+    <!-- Category -->
+      <div class="col-lg-3">
+        <h1 class="my-4">감자 마켓</h1>
+        <div class="list-group">
+          <a href="{{link.home}}item/clothes/" class="list-group-item">의류</a>
+          <a href="{{link.home}}item/device/" class="list-group-item">가전/디지털</a>
+          <a href="{{link.home}}item/furniture/" class="list-group-item">가구/인테리어</a>
+        </div>
+      </div>
+      <!-- /.col-lg-3 -->
+      <div class="col-lg-9">
+          <div class="card-body">
+            <!-- 검색창 -->
+            <form method="post">
+              {% csrf_token %}
+              <select name="category">
+                <option value="default" selected="selected">전체</option>
+                <option value="clothes"> 의류 </option>
+                <option value="furniture"> 가구 </option>
+                <option value="device"> 전자기기 </option>
+              </select>
+            <label for="search_keyword"> Search keyword: </label>
+            <input
+                id="search_keyword"
+                type="text"
+                name="search_keyword"
+                value="{{ search_keyword }}">
+            <input type="submit" value="입력">
+            </form>
+          </div>
+         {% if result %}
+        <div class="card card-outline-secondary my-4">
+       
+          <div class="card-header">
+            검색 결과
+          </div>
+        
+          <div class="card-body">
+            {% for data in result %}
+            <h4> {{ data.item_title}} </h4>
+            <p>{{ data.item_detail}} </p>
+            <br>
+            <p>판매 상태: {{ data.item_status }}</p>
+            <small class="text-muted"> {{data.item_date}} </small>
+            <hr>
+            {% endfor %}
+          </div>
+
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

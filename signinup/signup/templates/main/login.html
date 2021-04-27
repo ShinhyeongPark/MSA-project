@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    {% load static %}
+    <title>로그인</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="form-wrap">
+            <div class="button-wrap">
+                <div id="btn"></div>
+                <button type="button" class="togglebtn" onclick="login();">SIGN IN</button>
+                <button type="button" class="togglebtn" onclick="register();">SIGN UP</button>
+            </div>
+            <div class="social-icons"></div>
+            <form method="POST" id="login" action="{% url 'check' %}" class="input-group">
+                {% csrf_token %}
+                <input name="user_email" type="text" value="" class="input-field" placeholder="User name or Email" required>
+                <input name="user_password" type="password" value="" class="input-field" placeholder="Enter Password" required> {% if messages %} {% for message in messages %} {{ message.tags }} {{ message.message }} {% endfor %} {% endif %}
+                <button class="submit">Login</button>
+            </form>
+            <form method="POST" id="register" action="{% url 'success' %}" class="input-group">
+                {% csrf_token %}
+                <input name="user_email" type="email" class="input-field" placeholder="Email 입력해" required>
+                <input name="user_password" type="password" class="input-field" placeholder="어려운 비밀번호" required>
+                <input name="user_nickname" type="text" class="input-field" placeholder="닉네임을 사용할거여" required>
+                <input name="user_location" type="text" class="input-field" placeholder="니가 사는 그 집" required>
+                <input name="user_gender" type="text" class="input-field" placeholder="남/여" required>
+                <input name="user_birthdate" type="date" class="input-field" placeholder="YYYY-MM-DD" required> {% if messages %} {% for message in messages %} {{ message.tags }} {{ message.message }} {% endfor %} {% endif %}
+                <button class="submit">REGISTER</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        var x = document.getElementById("login");
+        var y = document.getElementById("register");
+        var z = document.getElementById("btn");
+
+
+        function login() {
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0";
+        }
+
+        function register() {
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+        }
+    </script>
+</body>
+
+</html>

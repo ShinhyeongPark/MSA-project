@@ -1,0 +1,12 @@
+{% load static %}
+
+<form action="{% url 'comment_insert' product_no=product.item_no %}" method="post">
+    {% csrf_token %}
+    <br>
+    <textarea name="comment_content" id="comment_content" class="form-control" cols="60" rows="5"></textarea>
+    <div style="text-align: right">
+    <br>
+    <button type="submit" class="btn btn-success">입력</button>
+    </div>
+    <hr>
+</form>

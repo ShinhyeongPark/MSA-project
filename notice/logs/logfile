@@ -1,0 +1,36 @@
+[16/Apr/2021 10:30:15] INFO [potatomarket.views:28] form_valid called
+[16/Apr/2021 10:30:15] DEBUG [potatomarket.views:30] admin
+[16/Apr/2021 10:32:03] DEBUG [potatomarket.views:29] <WSGIRequest: POST '/item/new/'>
+[16/Apr/2021 10:33:45] DEBUG [potatomarket.views:29] <QueryDict: {}>
+[16/Apr/2021 10:35:21] DEBUG [potatomarket.views:29] <QueryDict: {'csrfmiddlewaretoken': ['slB22Fav2AF4IL5jUIxr7uYnOBSYZiWBXjohSZ8LXv2CzVDqCxalZLZh9RvQ5a16'], 'item_name': ['123'], 'item_price': ['123'], 'item_detail': ['123']}>
+[16/Apr/2021 10:39:49] DEBUG [potatomarket.views:29] 'item_name': 갤락시, 'item_price': 123, 'item_detail': 안녕
+[16/Apr/2021 10:53:03] DEBUG [potatomarket.views:29] 'item_name': 123, 'item_price': 123, 'item_detail': 123
+[16/Apr/2021 10:53:27] DEBUG [potatomarket.views:29] 'item_name': 123, 'item_price': 123, 'item_detail': ㅁㅁㅁㅁㅁ
+[16/Apr/2021 10:54:59] DEBUG [potatomarket.views:31] 'item_name': 123, 'item_price': 123, 'item_detail': ㅁㅁㅁㅁㅁㅁ
+[16/Apr/2021 10:55:58] DEBUG [potatomarket.views:31] 'item_name': 123, 'item_price': 123, 'item_detail': ㅁㅁㅁㅁㅁㅁ
+[16/Apr/2021 11:08:34] DEBUG [potatomarket.views:29] 'item_name': ㅁㅁㅁ, 'item_price': 123, 'item_detail': ㅁㄴㅇㅁ
+[16/Apr/2021 11:18:15] DEBUG [potatomarket.views:29] 'item_name': ㅁㅁㅁ, 'item_price': 123, 'item_detail': ㅁㄴㅇ
+[16/Apr/2021 11:18:20] DEBUG [potatomarket.views:29] 'item_name': 123, 'item_price': 123, 'item_detail': 22
+[16/Apr/2021 11:18:23] DEBUG [potatomarket.views:29] 'item_name': 123, 'item_price': 123, 'item_detail': 222
+[16/Apr/2021 11:18:27] DEBUG [potatomarket.views:29] 'item_name': 31231, 'item_price': 12312, 'item_detail': 22
+[16/Apr/2021 11:18:37] DEBUG [potatomarket.views:29] 'item_name': 123, 'item_price': 122, 'item_detail': 123
+[16/Apr/2021 11:18:42] DEBUG [potatomarket.views:29] 'item_name': 123, 'item_price': 123, 'item_detail': 123
+[16/Apr/2021 11:18:47] DEBUG [potatomarket.views:29] 'item_name': 123, 'item_price': 123, 'item_detail': 123
+[16/Apr/2021 11:18:51] DEBUG [potatomarket.views:29] 'item_name': 11231, 'item_price': 21212, 'item_detail': 212112
+[19/Apr/2021 10:53:13] DEBUG [potatomarket.views:29] 'item_name': None, 'item_price': 123, 'item_detail': ㄴㅇㄴㅁㅇㅁㄴ
+[19/Apr/2021 17:08:47] DEBUG [potatomarket.views:40] 'item_name': None, 'item_price': 123, 'item_detail': 123123
+[20/Apr/2021 13:20:45] DEBUG [potatomarket.views:40] 'item_name': None, 'item_price': 12345, 'item_detail': ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ
+[21/Apr/2021 14:02:44] DEBUG [potatomarket.views:55] 'item_name': None, 'item_price': 222, 'item_detail': 2133ㅁㅁ
+[25/Apr/2021 22:09:02] DEBUG [potatomarket.views:68] 'item_name': None, 'item_price': 123, 'item_detail': 222
+[25/Apr/2021 22:10:22] DEBUG [potatomarket.views:68] 'item_name': None, 'item_price': 123, 'item_detail': 222
+[25/Apr/2021 22:15:33] DEBUG [potatomarket.views:68] 'item_name': None, 'item_price': 123, 'item_detail': 2
+[25/Apr/2021 22:15:50] DEBUG [potatomarket.views:68] 'item_name': None, 'item_price': 123, 'item_detail': 22
+[25/Apr/2021 22:16:36] DEBUG [potatomarket.views:68] 'item_name': None, 'item_price': 123, 'item_detail': 22
+[25/Apr/2021 23:08:21] DEBUG [potatomarket.views:83] 'item_name': None, 'item_price': 123, 'item_detail': 12321
+[26/Apr/2021 00:04:58] DEBUG [potatomarket.views:83] 'item_name': None, 'item_price': 123, 'item_detail': 123
+[26/Apr/2021 00:06:45] DEBUG [potatomarket.views:83] 'item_name': None, 'item_price': 123, 'item_detail': 222
+[26/Apr/2021 00:24:45] DEBUG [potatomarket.views:83] 'item_name': None, 'item_price': 123123, 'item_detail': asdasd
+[26/Apr/2021 18:21:02] DEBUG [potatomarket.views:86] 'item_name': None, 'item_price': 30000, 'item_detail': 갤럭시
+[26/Apr/2021 18:30:38] DEBUG [potatomarket.views:86] 'item_name': None, 'item_price': 3000, 'item_detail': 청바지입니당
+[26/Apr/2021 18:30:59] DEBUG [potatomarket.views:86] 'item_name': None, 'item_price': 50000, 'item_detail': 선반선반
+[27/Apr/2021 01:14:31] DEBUG [potatomarket.views:87] 'item_name': None, 'item_price': 200000, 'item_detail': 아이폰입니당

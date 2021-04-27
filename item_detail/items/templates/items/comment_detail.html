@@ -1,0 +1,52 @@
+{% extends "items/base.html" %}
+{% block content %}
+    {% load static %}
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            {% include 'items/category.html' %}
+            <div class="col-lg-9">
+                <div class="card card-outline-secondary my-4">
+                    <div class="card-header">
+                        댓글 수정
+                    </div>
+                    <!-- 기존 댓글 가져와서 보여줌 => 수정 -->
+                    <div class="card-body">
+                        <form action="{% url 'comment_update' product_no=product_no comment_no=comment.comment_no %}" method="post">
+                            {% csrf_token %}
+                            <label for="comment_content"></label>
+                            <br>
+                            <textarea name="comment_content" id="comment_content" class="form-control" cols="60" rows="5"> {{ comment.comment_content|default_if_none:'' }}</textarea>
+                            <div style="text-align: right">
+                                <br>
+                                <button type="submit" class="btn btn-success">입력</button>
+                            </div>
+                            <hr>
+                        </form>
+
+                        <!-- 댓글 내용 확인하는 창 -->
+                        <p>{{ comment.comment_content }}</p>
+                        <br>
+                        <small class="text-muted">
+                            작성일:
+                            {{ comment.comment_create_date }}
+                        </small>
+                        <br>
+                        {% if comment.comment_modify_date != NULL %}
+                            <small class="text-muted">
+                                수정일:
+                                {{ comment.comment_modify_date }}
+                            </small>
+                        {% endif%}
+                            <hr>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-lg-9 -->
+            </div>
+        </div>
+        <!-- /.container -->
+
+    {% endblock %}

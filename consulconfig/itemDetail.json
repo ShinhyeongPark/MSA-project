@@ -1,0 +1,7 @@
+{
+    "service": {
+        "name": "itemDetail", 
+        "tags": ["itemDetail"], 
+        "port": 8003
+    }
+}

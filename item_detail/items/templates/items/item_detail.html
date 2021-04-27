@@ -1,0 +1,84 @@
+{% extends "items/base.html" %}
+{% block content %}
+    {% load static %}
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+
+            {% include 'items/category.html' %}
+            <div class="col-lg-9">
+
+                <div class="card mt-4">
+                    <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a>
+                                {{ product.item_title}}
+                            </a>
+                        </h3>
+
+                        <h4>{{ product.item_price}}</h4>
+                        <p class="card-text">
+                            제품 설명
+                            {{ product.item_detail }}
+                        </p>
+                        <small class="text-muted">
+                            {{ product.item_date }}
+                        </small>
+                    </div>
+                </div>
+                <!-- /.card -->
+
+                <div class="card card-outline-secondary my-4">
+                    <div class="card-header">
+                        Comment List
+                    </div>
+                    <div class="card-body">
+
+                        <!-- 댓글 등록창 -->
+                        {% include 'items/comment_insert.html' with page=product %}
+
+                        <br>
+                        {% for reply in comment %}
+                            <p>{{ reply.comment_content}}</p>
+                            <small class="text-muted">
+                                등록일:
+                                {{ reply.comment_create_date }}
+                            </small>
+                            {% if reply.comment_modify_date != NULL %}
+                                <small class="text-muted">
+                                    | 수정일:
+                                    {{ reply.comment_modify_date }}
+                                </small>
+                            {% endif %}
+                            <div style="text-align: right">
+                                <form
+                                    action="{% url 'comment_detail' product_no=product.item_no comment_no=reply.comment_no%}"
+                                    method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" name="UD" value="update" class="btn btn-warning">
+                                        수정
+                                    </button>
+                                    <button type="submit" name="UD" value="delete" class="btn btn-danger">
+                                        삭제
+                                    </button>
+                                </form>
+                            </div>
+                            <hr>
+                        {% endfor %}
+                    </div>
+                    <div style="margin: auto; width: 25%;">
+                        {% include 'items/post_pagination.html' with page=comment %}
+                    </div>
+                </div>
+            </div>
+            <!-- /.card -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+</div>
+<!-- /.container -->
+
+{% endblock %}

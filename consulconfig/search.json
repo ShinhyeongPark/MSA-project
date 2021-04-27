@@ -1,0 +1,7 @@
+{
+    "service": {
+        "name": "search", 
+        "tags": ["search"], 
+        "port": 8006
+    }
+}

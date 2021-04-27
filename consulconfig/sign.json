@@ -1,0 +1,7 @@
+{
+    "service": {
+        "name": "sign", 
+        "tags": ["sign"], 
+        "port": 8002
+    }
+}
