@@ -1,5 +1,5 @@
 # MSA로 구현한 중고거래 사이트
-## Function
+## 💻Function
 1. 검색(ELK)
 2. 로그인/회원가입
 3. 댓글
@@ -12,7 +12,7 @@
 > 4. 매물 관련 Kafka, Zookeeper, MySQL 서버 Docker를 사용해 어떤 환경에서든 운영   
 - - - -
 ## 🖥Tech Stack
-￼![](README/Untitled.png)
+￼![기술스택](https://user-images.githubusercontent.com/57867611/116672094-ba64ce80-a9dc-11eb-966f-631e25dbd8d5.png)
 
 1.  Django Framework: MSA로 서비스를 설계할 때 장고와 FLASK 중 어떤 프레임워크를 사용할지 고민했으나, 개발 기간이 짧아 익숙하고 바로 개발에 들어갈 수 있는 장고를 선택했다. 하지만 개발을 계속하면서 FLASK보다 장고에서 API를 구현하는데 어렵다는 것을 느꼈다. 다음 MSA로 서비스를 구현할 때는 FLASK 또는 Java Spring을 사용할 것이다.
 
@@ -23,7 +23,7 @@
 4. Kafka: 용도에 따라 데이터베이스를 분리하고 데이터베이스간 동기화를 위해 Kafka를 사용했다. 동기화를 통해 데이터베이스를 분리함으로써, 기존에 하나의 DB로의 접근을 용도에 따라 접근하는 DB를 다르게해 MSA 취지에 맞도록 모듈-DB를 구현할 수 있었다. 아직 Broker, Group 등 Kafka의 여러 기능을 사용해 보지는 못했지만, 공부해 서버 로그를 수집하고, 분석하는 모듈에 Kafka를 사용해 구현할 것이다.
 
 5. Docker: 각 모듈들을 각자의 로컬환경(Window, Mac)에서 개발하고 AWS에서 전체 모듈이 운영되도록 개발하기 위해 도커를 사용했다. 기존에 이미지가 있을 경우는 Docker Hub의 이미지를 사용하고, 이미지를 없을 경우 직접 도커 이미지를 만들었다. 또한 이미지를 생성한 뒤 여러 모듈을 한번에 동작시키기 위해 Docker-Compose 파일을 작성해 운영의 편의성을 더했다.
-[도커컴포즈](https://github.com/ShinhyeongPark/MSA-project/blob/main/docker-compose.yaml)
+[Docker-compose] (https://github.com/ShinhyeongPark/MSA-project/blob/main/data/docker-compose.yaml)
 - - - -
 ## 📁PIP List
 1. bycrypt:
@@ -37,14 +37,18 @@
 
 - - - -
 ## ⚙️시스템 구성도
-![](README/Untitled.png)
+![시스템구성도](https://user-images.githubusercontent.com/57867611/116672145-cbaddb00-a9dc-11eb-91cd-c6d7911f5c4d.png)
 - Consul을 통해 각 서비스간 통신을 하게 해주고, 각 서비스의 위치(IP)를 찾는 용도로 사용했다.
 - 각 서비스를 포트별로 운영하고, 각 데이터베이스에는 API를 통해 접근한다.
 - 매물 데이터베이스 같은 경우에는 Kafka를 사용해 동기화하고, 만약 한쪽에 이상이 있을 경우 다른 한쪽에서 운영하게 함으로써 오류로 인한 서버 정지에 대비한다.
 - 모듈, Consul, Database, Kafa를 도커로 운영한다. 
 - - - -
-## 요구사항 분석
-링크
+## 📚요구사항 분석
+[요구사항 분석서] (./data/요구사항분석서.pdf)
 - - - -
-## API 설계
-링크
+## ✏️API 설계
+[API설계] (./data/API설계.pdf)
+- - - -
+## 📌ERD
+![ERD](https://user-images.githubusercontent.com/57867611/116672171-d4061600-a9dc-11eb-9519-fb0a77f2f7b7.png)
+[테이블설계] (./data/Table.설계.pdf)
