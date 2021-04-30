@@ -44,11 +44,11 @@
 - 모듈, Consul, Database, Kafa를 도커로 운영한다. 
 - - - -
 ## 📚요구사항 분석
-[요구사항 분석서] (./data/요구사항분석서.pdf)
+[요구사항 분석서] (https://github.com/ShinhyeongPark/MSA-project/blob/main/data/요구사항분석서.pdf)
 - - - -
 ## ✏️API 설계
-[API설계] (./data/API설계.pdf)
+[API설계] (https://github.com/ShinhyeongPark/MSA-project/blob/main/data/API설계.pdf)
 - - - -
 ## 📌ERD
 ![ERD](https://user-images.githubusercontent.com/57867611/116672171-d4061600-a9dc-11eb-9519-fb0a77f2f7b7.png)
-[테이블설계] (./data/Table.설계.pdf)
+[테이블설계] (https://github.com/ShinhyeongPark/MSA-project/blob/main/data/Table설계.pdf)
