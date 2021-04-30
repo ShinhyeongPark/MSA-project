@@ -1,0 +1,61 @@
+version: '2'
+services:
+  myitem: #매물등록 DB
+    image: mysql:5.7
+    container_name: myitem
+    ports: # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)  <- 컨테이너 내부는 무조건 3306
+      - "3307:3306" 
+    environment: # -e 옵션
+      - MYSQL_DATABASE=myitem
+      - MYSQL_ROOT_PASSWORD=["PASSWORD"]  # MYSQL 패스워드 설정 옵션
+      - TZ=Asia/Seoul
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes: #현재위치/myitem
+      - $PWD/myitem:/var/lib/mysql
+    networks:
+      - msa-network
+
+  searchitem:
+    image: mysql:5.7
+    container_name: searchitem
+    ports:
+      - "3308:3306" 
+    environment: # -e 옵션
+      - MYSQL_DATABASE=searchitem
+      - MYSQL_ROOT_PASSWORD=["PASSWORD"]  # MYSQL 패스워드 설정 옵션
+      - TZ=Asia/Seoul
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - $PWD/searchitem:/var/lib/mysql
+    networks:
+      - msa-network
+
+  zookeeper:
+    container_name: zookeeper
+    image: wurstmeister/zookeeper
+    ports: #주키퍼,카프카 포트는 알아두자
+      - "2181:2181"
+    networks:
+      msa-network:
+        ipv4_address: 172.19.0.141
+  kafka:
+    container_name: kafka
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 172.19.0.142
+			#카프카 토픽 생성
+      KAFKA_CREATE_TOPICS: "market_item:1:1,market_solditem:1:1,market_comment:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - zookeeper
+    networks:
+      msa-network:
+        ipv4_address: 172.19.0.142
