@@ -4,12 +4,14 @@
 2. 로그인/회원가입
 3. 댓글
 4. 거래
+
 - - - -
 ## 💡Role
 > 1. JWT 토큰을 이용한 로그인, 회원가입 구현  
 > 2. 용도(삽입,삭제,수정,조회)에 따라 Database 분리  
 > 3. Kafka를 사용해 분리된 Database간 동기화  
 > 4. 매물 관련 Kafka, Zookeeper, MySQL 서버 Docker를 사용해 어떤 환경에서든 운영   
+
 - - - -
 ## 🖥Tech Stack
 ￼![기술스택](https://user-images.githubusercontent.com/57867611/116672094-ba64ce80-a9dc-11eb-966f-631e25dbd8d5.png)
@@ -24,6 +26,7 @@
 
 5. Docker: 각 모듈들을 각자의 로컬환경(Window, Mac)에서 개발하고 AWS에서 전체 모듈이 운영되도록 개발하기 위해 도커를 사용했다. 기존에 이미지가 있을 경우는 Docker Hub의 이미지를 사용하고, 이미지를 없을 경우 직접 도커 이미지를 만들었다. 또한 이미지를 생성한 뒤 여러 모듈을 한번에 동작시키기 위해 Docker-Compose 파일을 작성해 운영의 편의성을 더했다.
 [Docker-compose] (https://github.com/ShinhyeongPark/MSA-project/blob/main/data/docker-compose.yaml)
+
 - - - -
 ## 📁PIP List
 1. bycrypt:
